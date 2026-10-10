@@ -1,155 +1,713 @@
-
-[10/10/2026 9:38 PM] .: <!DOCTYPE html>
+[10/10/2026 10:16 PM] .: <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دنیای کوچولوی تو 💗</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دنیای کوچولوی تو 🎀</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --pink: #ff77a8;
+  --light: #fff0f6;
+  --purple: #a88bff;
+  --dark: #713b65;
+  --white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Vazirmatn', Tahoma, sans-serif;
+  color: var(--dark);
+  background:
+    radial-gradient(circle at 10% 10%, #ffe1ee 0, transparent 30%),
+    radial-gradient(circle at 90% 40%, #e9ddff 0, transparent 30%),
+    #fff8fc;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  transition: .3s;
+}
+
+button:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+#progress {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #ff5b9d, #b39aff);
+  width: 0;
+  z-index: 1000;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  padding: 13px;
+  background: rgba(255,255,255,.83);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid #ffe0ee;
+}
+
+nav button {
+  border: 1px solid #ffd4e6;
+  background: white;
+  color: #9a5680;
+  border-radius: 20px;
+  padding: 8px 13px;
+  font-size: 12px;
+}
+
+nav button.active {
+  background: #ff7eaf;
+  color: white;
+}
+
+section {
+  display: none;
+  min-height: 90vh;
+  padding: 45px 18px 70px;
+  max-width: 1000px;
+  margin: auto;
+  animation: appear .6s ease;
+}
+
+section.active {
+  display: block;
+}
+
+@keyframes appear {
+  from {opacity:0; transform:translateY(18px)}
+  to {opacity:1; transform:translateY(0)}
+}
+
+.hero {
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h1 {
+  font-size: clamp(30px, 6vw, 56px);
+  line-height: 1.8;
+  margin: 10px 0;
+}
+
+h2 {
+  font-size: clamp(25px, 4vw, 36px);
+  text-align: center;
+}
+
+p {
+  line-height: 2.2;
+}
+
+.subtitle {
+  font-size: 17px;
+  text-align: center;
+  max-width: 650px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 9px 17px;
+  border-radius: 30px;
+  background: white;
+  border: 1px solid #ffd4e6;
+  box-shadow: 0 6px 20px #ffcce233;
+}
+
+.big-heart {
+  font-size: 100px;
+  animation: heartbeat 1.2s infinite;
+  filter: drop-shadow(0 10px 15px #ff85b666);
+}
+
+@keyframes heartbeat {
+  0%,100% {transform:scale(1)}
+  15% {transform:scale(1.15)}
+  30% {transform:scale(1)}
+  45% {transform:scale(1.1)}
+}
+
+.primary {
+  background: linear-gradient(135deg, #ff78aa, #b18aff);
+  color: white;
+  border: none;
+  border-radius: 18px;
+  padding: 13px 24px;
+  box-shadow: 0 8px 20px #dc8ec633;
+  margin: 7px;
+}
+
+.secondary {
+  background: white;
+  border: 1px solid #ffd1e3;
+  color: #a04e80;
+  border-radius: 15px;
+  padding: 11px 18px;
+  margin: 5px;
+}
+
+.card {
+  background: rgba(255,255,255,.85);
+  border: 1px solid #ffe0ee;
+  border-radius: 25px;
+  padding: 23px;
+  box-shadow: 0 12px 35px #dba7ca20;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px,1fr));
+  gap: 17px;
+  margin: 28px 0;
+}
+
+.card .emoji {
+  font-size: 40px;
+}
+
+.center {
+  text-align: center;
+}
+
+.small {
+  font-size: 13px;
+  opacity: .8;
+}
+
+.float {
+  position: fixed;
+  pointer-events: none;
+  z-index: 200;
+  animation: floatUp 4s linear forwards;
+}
+
+@keyframes floatUp {
+  from {transform:translateY(0) rotate(0);opacity:1}
+  to {transform:translateY(-110vh) rotate(35deg);opacity:0}
+}
+
+.envelope {
+  font-size: 110px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  border: none;
+  background: none;
+}
+
+.letter {
+  background: #fffdf8;
+  border: 2px dashed #ffb3cf;
+  border-radius: 22px;
+  padding: 25px;
+  line-height: 2.4;
+  max-width: 650px;
+  margin: 20px auto;
+  box-shadow: 0 8px 25px #edb5cd25;
+}
+[10/10/2026 10:16 PM] .: .heart-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(50px, 80px));
+  justify-content: center;
+  gap: 12px;
+  margin: 25px auto;
+}
+
+.heart-cell {
+  height: 72px;
+  font-size: 29px;
+  border: 1px solid #ffcfe2;
+  border-radius: 17px;
+  background: white;
+}
+
+.heart-cell.found {
+  background: #ffe3ef;
+  opacity: .7;
+}
+
+.flower {
+  font-size: 52px;
+  display: inline-block;
+  cursor: pointer;
+  animation: sway 2s infinite alternate ease-in-out;
+  margin: 13px;
+}
+
+@keyframes sway {
+  from {transform:rotate(-10deg)}
+  to {transform:rotate(10deg)}
+}
+
+.flower.grow {
+  animation: grow .5s forwards;
+}
+
+@keyframes grow {
+  to {transform:scale(1.6)}
+}
+
+.gift {
+  font-size: 65px;
+  border: 1px solid #ffd5e7;
+  border-radius: 22px;
+  background: white;
+  padding: 20px;
+}
+
+#message, #gameMessage, #giftMessage {
+  min-height: 45px;
+  text-align: center;
+  font-weight: 600;
+  line-height: 2;
+  margin-top: 18px;
+}
+
+footer {
+  text-align: center;
+  padding: 35px 15px;
+  background: #fff0f7;
+  line-height: 2;
+}
+
+@media(max-width:600px) {
+  nav {gap:5px;padding:8px}
+  nav button {font-size:10px;padding:7px 9px}
+  section {padding:30px 14px 55px}
+  .heart-grid {gap:8px}
+  .heart-cell {height:60px}
+}
+</style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">🎀 دنیای کوچولوی تو</div>
-    <div id="page-number">صفحه ۱ از ۸</div>
-</header>
+<div id="progress"></div>
 
-<main>
+<nav>
+  <button class="active" onclick="go(0)">🎀 خانه</button>
+  <button onclick="go(1)">💌 نامه</button>
+  <button onclick="go(2)">💗 بازی قلب</button>
+  <button onclick="go(3)">🌸 باغ گل</button>
+  <button onclick="go(4)">👑 دلایل</button>
+  <button onclick="go(5)">🎁 هدیه</button>
+  <button onclick="go(6)">💞 قلب من</button>
+  <button onclick="go(7)">✨ پایان</button>
+</nav>
 
-    <!-- صفحه اول -->
-    <section class="page active">
-        <div class="decoration">🧸 💗 🌷 🎀</div>
-        <h1>روز دخترت مبارک</h1>
-        <h2>قشنگ‌ترین دختر دنیای منی! 💕</h2>
+<!-- صفحه اول -->
+<section class="active">
+  <div class="hero">
+    <span class="badge">🎀 یک دنیای کوچولو فقط برای تو 🎀</span>
+    <div class="big-heart">💗</div>
+    <h1>روز دختر مبارک<br>قشنگ‌ترین دختر دنیای من!</h1>
+    <p class="subtitle">
+      هستی کوچولوی من، این دنیای کوچیک رو ساختم
+      که یه گوشه از دوست داشتنم رو توش جا بدم.
+      آماده‌ای با هم بریم؟ 🧸
+    </p>
+    <button class="primary" onclick="go(1)">بریم نامه‌مو بخونیم 💌</button>
+    <button class="secondary" onclick="sprinkle()">بارون قلب ببارون! 💕</button>
+    <p class="small">ساخته‌شده با کلی عشق برای تو 🌷</p>
+  </div>
+</section>
 
-        <p>
-            این گوشه‌ی کوچولو از دنیا رو فقط برای تو ساختم،
-            چون تو خودت یه دنیای قشنگی! 🥹💗
-        </p>
+<!-- صفحه دوم -->
+<section>
+  <h2>💌 یه نامه برای دختر قشنگم</h2>
+  <p class="subtitle">روی پاکت بزن تا نامه‌ت باز بشه! 🎀</p>
+  <button class="envelope" onclick="openLetter()">💌</button>
+  <div id="letter" class="letter" style="display:none">
+    <h3>هستیِ قشنگم 💗</h3>
+    <p>
+      نمی‌دونم چطوری باید تمام حس قشنگم به تو رو توی چند تا کلمه جا بدم.
+      فقط می‌دونم بودنت برای من یه اتفاق دوست‌داشتنیه.
+      تو همون آدمی هستی که با یه پیام کوچیک می‌تونه لبخند بیاره روی لبم.
+      <br><br>
+      دوست دارم وقتی خوشحالی کنارت باشم،
+      وقتی خسته‌ای آرومت کنم و وقتی دلت گرفته،
+      یادت بندازم که چقدر دوست‌داشتنی هستی.
+      <br><br>
+      روز دخترت مبارک، دختر گوگولی من.
+      امیدوارم همیشه دلت پر از آرامش و لبخند باشه.
+      <br><br>
+      با کلی عشق، از طرف آدمی که خیلی دوستت داره 💗
+    </p>
+    <div class="center">🎀 🌷 🧸 💕 🌸</div>
+  </div>
+  <div class="center">
+    <button class="primary" onclick="go(2)">بریم بازی کنیم! 💗</button>
+  </div>
+</section>
 
-        <button onclick="nextPage()">بریممم! 🎀</button>
-    </section>
+<!-- صفحه سوم -->
+<section>
+  <h2>💗 قلب‌های مخفی رو پیدا کن!</h2>
+  <p class="subtitle">
+    توی این جعبه‌ها ۵ تا قلب مخفی شده.
+    پیداشون کن تا پیام مخفی من رو ببینی! 🧸
+  </p>
+  <div class="heart-grid" id="heartGrid"></div>
+  <p id="gameMessage">قلب‌ها منتظر تو هستن! 💕</p>
+  <div class="center">
+    <button class="secondary" onclick="resetGame()">دوباره بازی کنیم 🔄</button>
+    <button class="primary" onclick="go(3)">رفتن به باغ گل 🌸</button>
+  </div>
+</section>
 
-    <!-- صفحه دوم -->
-    <section class="page">
-        <h1>چرا انقدر خاصی؟ 🌸</h1>
+<!-- صفحه چهارم -->
+<section>
+  <h2>🌸 باغ کوچولوی هستی</h2>
+  <p class="subtitle">
+[10/10/2026 10:16 PM] .: روی گل‌ها بزن تا شکوفه بدن.
+    هر گل یه ذره عشق توی خودش داره! 🌷
+  </p>
+  <div class="card center">
+    <div id="garden">
+      <span class="flower" onclick="growFlower(this)">🌷</span>
+      <span class="flower" onclick="growFlower(this)">🌸</span>
+      <span class="flower" onclick="growFlower(this)">🌼</span>
+      <span class="flower" onclick="growFlower(this)">🌹</span>
+      <span class="flower" onclick="growFlower(this)">🌺</span>
+      <span class="flower" onclick="growFlower(this)">🪻</span>
+      <span class="flower" onclick="growFlower(this)">🌻</span>
+      <span class="flower" onclick="growFlower(this)">💐</span>
+    </div>
+    <p id="flowerMessage">این باغ با لبخند تو قشنگ‌تر می‌شه 💗</p>
+    <button class="primary" onclick="gardenRain()">بارون گل! 🌷</button>
+  </div>
+  <div class="center">
+    <button class="primary" onclick="go(4)">چرا این‌قدر خاصم؟ 👑</button>
+  </div>
+</section>
 
-        <div class="cards">
-            <div class="card">🌷<h3>قشنگ من</h3><p>با بودنت دنیا قشنگ‌تر می‌شه.</p></div>
-            <div class="card">🧸<h3>دختر گوگولی</h3><p>تو یه دونه‌ای و هیچ‌کس مثل تو نیست.</p></div>
-            <div class="card">👑<h3>ملکه من</h3><p>همیشه لایق بهترین اتفاق‌هایی.</p></div>
-        </div>
+<!-- صفحه پنجم -->
+<section>
+  <h2>👑 چرا انقدر خاصی؟</h2>
+  <p class="subtitle">چند تا از دلیل‌هایی که تو رو برای من خاص می‌کنن...</p>
+  <div class="grid">
+    <div class="card">
+      <div class="emoji">💗</div>
+      <h3>قلب مهربونت</h3>
+      <p>مهربونی تو یکی از قشنگ‌ترین چیزهاییه که دوست دارم.</p>
+    </div>
+    <div class="card">
+      <div class="emoji">🧸</div>
+      <h3>دختر گوگولی</h3>
+      <p>یه مدل بامزه و دوست‌داشتنی داری که شبیه هیچ‌کس نیست.</p>
+    </div>
+    <div class="card">
+      <div class="emoji">🌷</div>
+      <h3>لبخندت</h3>
+      <p>لبخندت می‌تونه یه روز معمولی رو قشنگ‌تر کنه.</p>
+    </div>
+    <div class="card">
+      <div class="emoji">✨</div>
+      <h3>خودِ خودت</h3>
+      <p>لازم نیست شبیه کسی باشی؛ خودت به‌اندازه کافی خاصی.</p>
+    </div>
+    <div class="card">
+      <div class="emoji">🦋</div>
+      <h3>حس قشنگت</h3>
+      <p>بودنت یه حس دوست‌داشتنی به دنیای من اضافه می‌کنه.</p>
+    </div>
+    <div class="card">
+      <div class="emoji">👑</div>
+      <h3>ملکه من</h3>
+      <p>امروز و هر روز، توی دنیای من جای مخصوص خودتو داری.</p>
+    </div>
+  </div>
+  <div class="center">
+    <button class="primary" onclick="go(5)">حالا سورپرایزم کجاست؟ 🎁</button>
+  </div>
+</section>
 
-        <button onclick="nextPage()">بعدی 💗</button>
-    </section>
+<!-- صفحه ششم -->
+<section>
+  <h2>🎁 سه تا جعبهٔ سورپرایز</h2>
+  <p class="subtitle">یکی رو انتخاب کن و ببین چی برات کنار گذاشتم! 💗</p>
+  <div class="grid center">
+    <div class="card">
+      <button class="gift" onclick="openGift(0)">🎁</button>
+      <p>جعبهٔ صورتی</p>
+    </div>
+    <div class="card">
+      <button class="gift" onclick="openGift(1)">🎀</button>
+      <p>جعبهٔ روبانی</p>
+    </div>
+    <div class="card">
+      <button class="gift" onclick="openGift(2)">🧸</button>
+      <p>جعبهٔ گوگولی</p>
+    </div>
+  </div>
+  <p id="giftMessage">یکی رو انتخاب کن، کوچولو! 💕</p>
+  <div class="center">
+    <button class="primary" onclick="go(6)">قلب منو ببین 💞</button>
+  </div>
+</section>
 
-    <!-- صفحه سوم -->
-    <section class="page">
-        <h1>بازی جمع کردن قلب‌ها 💖</h1>
-        <p>روی قلب‌ها بزن و امتیاز جمع کن!</p>
+<!-- صفحه هفتم -->
+<section>
+  <h2>💞 قلب من دست توئه</h2>
+  <p class="subtitle">
+    هر بار که روی قلب می‌زنی، بزرگ‌تر می‌شه.
+    انگار دوست داشتنم هر روز بیشتر می‌شه! 💗
+  </p>
+  <div class="center">
+    <div id="myHeart"
+         onclick="heartClick()"
+         style="font-size:100px;cursor:pointer;transition:.25s">
+      💗
+    </div>
+    <p id="heartMessage">یه بار روی قلبم بزن! 🥹</p>
+    <button class="secondary" onclick="resetHeart()">از اول 💕</button>
+  </div>
+  <div class="card center">
+    <h3>یه سؤال کوچولو 🎀</h3>
+    <p>می‌دونی چقدر دوست‌داشتنی هستی؟</p>
+    <button class="primary" onclick="answer(true)">آرههه 💗</button>
+    <button class="secondary" onclick="answer(false)">نه، چقدر؟ 🥺</button>
+    <p id="answerMessage"></p>
+  </div>
+  <div class="center">
+    <button class="primary" onclick="go(7)">سورپرایز آخررر! ✨</button>
+  </div>
+</section>
 
-        <h2>امتیاز: <span id="score">0</span></h2>
+<!-- صفحه هشتم -->
+<section>
+  <div class="hero">
+    <span class="badge">✨ آخرین صفحه، ولی نه آخر عشق من ✨</span>
+[10/10/2026 10:16 PM] .: <div class="big-heart">💖</div>
+    <h1>هستیِ من! 🎀</h1>
+    <div class="letter">
+      <p>
+        اگه قرار بود از بین تمام آدم‌های دنیا
+        یه نفر رو انتخاب کنم که بهش بگم
+        «دختر قشنگ دنیای من»،
+        دلم می‌خواست اون یه نفر تو باشی.
+        <br><br>
+        امیدوارم هر وقت این صفحه رو دیدی،
+        یادت بیاد یه نفر هست که از ته دل
+        دوست داره لبخندت رو ببینه.
+        <br><br>
+        روز دختر مبارک، قشنگ‌ترین اتفاق دنیای من! 🌷
+      </p>
+      <h3 class="center">دوستت دارم، هستیِ گوگولی من 💗</h3>
+    </div>
+    <button class="primary" onclick="finalSurprise()">سورپرایز آخر رو باز کن 🎁</button>
+    <p id="finalMessage"></p>
+    <button class="secondary" onclick="go(0)">برگردیم به اول؟ 🎀</button>
+  </div>
+</section>
 
-        <div id="game-area">
-            <button class="heart" onclick="collectHeart(this)">💗</button>
-            <button class="heart" onclick="collectHeart(this)">💖</button>
-            <button class="heart" onclick="collectHeart(this)">💕</button>
-            <button class="heart" onclick="collectHeart(this)">💘</button>
-        </div>
+<footer>
+  ساخته‌شده با کلی عشق برای هستی 🎀💗<br>
+  <span class="small">دنیای کوچولوی تو، همیشه پر از عشق و گل باشه 🌷</span>
+</footer>
 
-        <button onclick="nextPage()">صفحه بعد 🎀</button>
-    </section>
+<script>
+let currentPage = 0;
 
-    <!-- صفحه چهارم -->
-    <section class="page">
-        <h1>یه سؤال گوگولی! 🐰</h1>
-        <p>کدوم یکی از اینا بیشتر خوشحالت می‌کنه؟</p>
+function go(page) {
+  const sections = document.querySelectorAll('section');
+  sections.forEach((section, index) => {
+    section.classList.toggle('active', index === page);
+  });
 
-        <button onclick="answer('نامه عاشقانه 💌')">نامه عاشقانه 💌</button>
-        <button onclick="answer('شکلات 🍫')">شکلات 🍫</button>
-        <button onclick="answer('بغل گرم 🧸')">بغل گرم 🧸</button>
+  document.querySelectorAll('nav button').forEach((button, index) => {
+    button.classList.toggle('active', index === page);
+  });
 
-        <h2 id="answer"></h2>
+  currentPage = page;
+  window.scrollTo({top:0, behavior:'smooth'});
+  document.getElementById('progress').style.width =
+    ((page + 1) / 8 * 100) + '%';
+}
 
-        <button onclick="nextPage()">بعدی 💗</button>
-    </section>
+function floatEmoji(emoji, x) {
+  const element = document.createElement('div');
+  element.className = 'float';
+  element.textContent = emoji;
+  element.style.left = (x ?? Math.random() * window.innerWidth) + 'px';
+  element.style.bottom = '-35px';
+  element.style.fontSize = (20 + Math.random() * 22) + 'px';
+  document.body.appendChild(element);
+  setTimeout(() => element.remove(), 4000);
+}
 
-    <!-- صفحه پنجم -->
-    <section class="page">
-        <h1>بازی حافظه 🧠</h1>
-        <p>روی کارت‌ها بزن و شکل‌های مشابه رو پیدا کن!</p>
+function sprinkle() {
+  const emojis = ['💗','💕','💖','🎀','🌸','🧸','✨'];
+  for(let i = 0; i < 35; i++) {
+    setTimeout(() => {
+      floatEmoji(emojis[Math.floor(Math.random()*emojis.length)]);
+    }, i * 65);
+  }
+}
 
-        <div id="memory-game">
-            <button onclick="flip(this)">🌸</button>
-            <button onclick="flip(this)">💗</button>
-            <button onclick="flip(this)">🌸</button>
-            <button onclick="flip(this)">🎀</button>
-            <button onclick="flip(this)">💗</button>
-            <button onclick="flip(this)">🎀</button>
-        </div>
+function openLetter() {
+  const letter = document.getElementById('letter');
+  letter.style.display = 'block';
+  sprinkle();
+}
 
-        <h2 id="memory-message"></h2>
+let hiddenHearts = [];
+let foundHearts = 0;
 
-        <button onclick="nextPage()">بعدی 💌</button>
-    </section>
+function resetGame() {
+  const grid = document.getElementById('heartGrid');
+  grid.innerHTML = '';
+  hiddenHearts = [];
 
-    <!-- صفحه ششم -->
-    <section class="page">
-        <h1>یه نامه برای تو 💌</h1>
+  while(hiddenHearts.length < 5) {
+    const n = Math.floor(Math.random()*16);
+    if(!hiddenHearts.includes(n)) hiddenHearts.push(n);
+  }
 
-        <div class="letter">
-            دختر قشنگ من،
-            <br><br>
-            روز دختر مبارک، خوشگل‌ترین اتفاق زندگی من! 💗
-            <br><br>
-            امیدوارم همیشه بخندی، به آرزوهات برسی
-            و هیچ‌وقت یادت نره چقدر ارزشمندی.
-            <br><br>
-            تو لازم نیست کامل باشی تا دوست‌داشتنی باشی.
-            همین که خودتی، قشنگه. 🌷
-        </div>
+  foundHearts = 0;
+  document.getElementById('gameMessage').textContent =
+    '۵ قلب مخفی رو پیدا کن! 💕';
 
-        <button onclick="nextPage()">سورپرایز بعدی 🎁</button>
-    </section>
+  for(let i=0; i<16; i++) {
+    const button = document.createElement('button');
+    button.className = 'heart-cell';
+    button.textContent = '🎀';
+    button.setAttribute('aria-label', 'جعبه مخفی');
+    button.onclick = () => {
+      if(button.disabled) return;
 
-    <!-- صفحه هفتم -->
-    <section class="page">
-        <h1>یه هدیه برای تو! 🎁</h1>
+      button.disabled = true;
 
-        <div id="gift" onclick="openGift()">🎁</div>
+      if(hiddenHearts.includes(i)) {
+        button.textContent = '💗';
+        button.classList.add('found');
+        foundHearts++;
 
-        <h2 id="gift-message"></h2>
+        document.getElementById('gameMessage').textContent =
+          foundHearts === 5
+            ? 'آفریننن! همهٔ قلب‌ها رو پیدا کردی! تو خودِ عشقی! 💖'
+            : 'یه قلب دیگه پیدا کردی! 💗 (' + foundHearts + ' از ۵)';
 
-        <button onclick="nextPage()">بازم سورپرایز دارم! 💗</button>
-    </section>
+        floatEmoji('💖');
+      } else {
+        button.textContent = '🌸';
+        document.getElementById('gameMessage').textContent =
+          'این یکی گل بود! یکی دیگه رو امتحان کن 🌷';
+      }
+    };
+    grid.appendChild(button);
+  }
+}
 
-    <!-- صفحه هشتم -->
-    <section class="page">
-        <div class="decoration">💗 💕 💖 💝 💗</div>
+function growFlower(element) {
+  element.classList.toggle('grow');
+  document.getElementById('flowerMessage').textContent =
+    'یه شکوفه برای قشنگ‌ترین دختر دنیا! 🌸💗';
+  floatEmoji('🌸');
+}
 
-        <h1>روز دختر مبارک، هستی من! 🎀</h1>
+function gardenRain() {
+  const emojis = ['🌸','🌷','🌹','🌼','💗'];
+  for(let i=0;i<25;i++) {
+    setTimeout(() => {
+      floatEmoji(emojis[Math.floor(Math.random()*emojis.length)]);
+    }, i*90);
+  }
+}
 
-        <p>
-            اگه قرار باشه دوباره از اول انتخاب کنم،
-            بازم دلم می‌خواد تو همون دختر قشنگ دنیام باشی. 🥹💗
-        </p>
+const gifts = [
+  '🎀 هدیهٔ اول: یه بغل مجازی خیلی بزرگ برای تو!',
+  '💌 هدیهٔ دوم: یه عالمه بوس و دوست داشتن!',
+  '🧸 هدیهٔ سوم: تو خودت قشنگ‌ترین هدیهٔ دنیای منی!'
+];
+[10/10/2026 10:16 PM] .: function openGift(index) {
+  document.getElementById('giftMessage').textContent = gifts[index];
+  sprinkle();
+}
 
-        <h2>دوستت دارم، گوگولی من! 🧸</h2>
-[10/10/2026 9:38 PM] .: <button onclick="createHearts()">بارون قلبییی! 💕</button>
-        <button onclick="restart()">از اول ببینیم ↻</button>
-    </section>
+let heartSize = 100;
+let heartClicks = 0;
 
-</main>
+function heartClick() {
+  heartClicks++;
+  heartSize = Math.min(heartSize + 18, 260);
 
-<div id="heart-rain"></div>
+  const heart = document.getElementById('myHeart');
+  heart.style.fontSize = heartSize + 'px';
 
-<div class="navigation">
-    <button onclick="previousPage()">قبلی</button>
-    <button onclick="nextPage()">بعدی</button>
-</div>
+  const messages = [
+    'یه ذره بیشتر دوستت دارم! 💗',
+    'بازم بیشتررر! 💖',
+    'قلبم داره بزرگ می‌شه! 🥹',
+    'همهٔ این قلب‌ها مال توئه! 💕',
+    'دیگه جا برای این همه عشق ندارم! 😭💗'
+  ];
 
-<script src="script.js"></script>
+  document.getElementById('heartMessage').textContent =
+    messages[Math.min(heartClicks-1, messages.length-1)];
+
+  floatEmoji('💗');
+}
+
+function resetHeart() {
+  heartSize = 100;
+  heartClicks = 0;
+  document.getElementById('myHeart').style.fontSize = '100px';
+  document.getElementById('heartMessage').textContent =
+    'یه بار روی قلبم بزن! 🥹';
+}
+
+function answer(yes) {
+  document.getElementById('answerMessage').textContent = yes
+    ? 'ولی من بازم باید هر روز بهت یادآوری کنم! 💗'
+    : 'اون‌قدر که هیچ عددی نمی‌تونه اندازه‌ش رو بگه! 💖';
+  sprinkle();
+}
+
+function finalSurprise() {
+  document.getElementById('finalMessage').innerHTML =
+    '🎀💗 هستی، تو یه دونه‌ای! 💗🎀<br>' +
+    'امیدوارم همیشه دلت شاد باشه و بخندی! 🌸🧸';
+
+  sprinkle();
+}
+
+window.addEventListener('scroll', () => {
+  const height = document.documentElement.scrollHeight -
+                 window.innerHeight;
+  const progress = height > 0 ? window.scrollY / height * 100 : 0;
+  document.getElementById('progress').style.width = progress + '%';
+});
+
+resetGame();
+</script>
 
 </body>
 </html>
