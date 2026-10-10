@@ -1,166 +1,247 @@
-// جابه‌جایی بین ۸ صفحه
+[10/10/2026 10:46 PM] .: // 🎀 جابه‌جایی بین ۸ صفحه
+function go(page) {
+  const sections = document.querySelectorAll('section');
+  const buttons = document.querySelectorAll('nav button');
 
-let currentPage = 0;
+  if (page < 0 || page >= sections.length) return;
 
-const pages = document.querySelectorAll('.page');
+  sections.forEach((section, index) => {
+    section.classList.toggle('active', index === page);
+  });
 
-function showPage() {
-    pages.forEach((page, index) => {
-        page.classList.toggle('active', index === currentPage);
-    });
+  buttons.forEach((button, index) => {
+    button.classList.toggle('active', index === page);
+  });
 
-    document.getElementById('page-number').textContent =
-        صفحه ${currentPage + 1} از ۸;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const progress = document.getElementById('progress');
+
+  if (progress) {
+    progress.style.width = ((page + 1) / sections.length * 100) + '%';
+  }
 }
 
-function nextPage() {
-    if (currentPage < pages.length - 1) {
-        currentPage++;
-        showPage();
-    }
+// 💗 بارون قلب و ایموجی
+function floatEmoji(emoji) {
+  const element = document.createElement('div');
+
+  element.textContent = emoji;
+  element.style.position = 'fixed';
+  element.style.left = Math.random() * 95 + 'vw';
+  element.style.bottom = '-40px';
+  element.style.fontSize = (20 + Math.random() * 25) + 'px';
+  element.style.pointerEvents = 'none';
+  element.style.zIndex = '9999';
+  element.style.transition = 'transform 4s linear, opacity 4s linear';
+
+  document.body.appendChild(element);
+
+  requestAnimationFrame(() => {
+    element.style.transform = 'translateY(-110vh) rotate(360deg)';
+    element.style.opacity = '0';
+  });
+
+  setTimeout(() => element.remove(), 4100);
 }
 
-function previousPage() {
-    if (currentPage > 0) {
-        currentPage--;
-        showPage();
-    }
-}
+function sprinkle() {
+  const emojis = ['💗', '💕', '💖', '🎀', '🌸', '🧸', '✨'];
 
-function restart() {
-    currentPage = 0;
-    showPage();
-}
-
-
-// بازی جمع کردن قلب‌ها
-
-let score = 0;
-
-function collectHeart(button) {
-    score++;
-
-    document.getElementById('score').textContent = score;
-
-    button.style.transform = 'scale(1.5) rotate(20deg)';
-    button.textContent = '✨';
-
+  for (let i = 0; i < 30; i++) {
     setTimeout(() => {
-        button.style.transform = '';
-        button.textContent = ['💗', '💖', '💕', '💘'][
-            Math.floor(Math.random() * 4)
-        ];
-    }, 300);
+      floatEmoji(emojis[Math.floor(Math.random() * emojis.length)]);
+    }, i * 80);
+  }
 }
 
+// 💌 باز کردن نامه
+function openLetter() {
+  const letter = document.getElementById('letter');
 
-// جواب‌های کوییز
-
-function answer(message) {
-    document.getElementById('answer').textContent =
-        'انتخابت ثبت شد: ' + message + ' 💗';
+  if (letter) {
+    letter.style.display = 'block';
+    sprinkle();
+  }
 }
 
+// 💗 بازی پیدا کردن قلب‌ها
+let hiddenHearts = [];
+let foundHearts = 0;
 
-// بازی حافظه
+function resetGame() {
+  const grid = document.getElementById('heartGrid');
+  const message = document.getElementById('gameMessage');
 
-let firstCard = null;
-let locked = false;
-let matchedPairs = 0;
+  if (!grid) return;
 
-function flip(button) {
-    if (locked || button.dataset.done === 'true') {
-        return;
+  grid.innerHTML = '';
+  hiddenHearts = [];
+  foundHearts = 0;
+
+  while (hiddenHearts.length < 5) {
+    const number = Math.floor(Math.random() * 16);
+
+    if (!hiddenHearts.includes(number)) {
+      hiddenHearts.push(number);
     }
+  }
 
-    if (button.dataset.open === 'true') {
-        return;
-    }
+  if (message) message.textContent = '۵ قلب مخفی رو پیدا کن! 💕';
 
-    button.dataset.open = 'true';
+  for (let i = 0; i < 16; i++) {
+    const button = document.createElement('button');
 
-    if (firstCard === null) {
-        firstCard = button;
-        return;
-    }
+    button.className = 'heart-cell';
+    button.textContent = '🎀';
 
-    if (firstCard === button) {
-        return;
-    }
+    button.onclick = function () {
+      if (button.disabled) return;
 
-    if (firstCard.textContent === button.textContent) {
-        firstCard.dataset.done = 'true';
-        button.dataset.done = 'true';
+      button.disabled = true;
 
-        firstCard.style.background = '#d9f8e2';
-        button.style.background = '#d9f8e2';
+      if (hiddenHearts.includes(i)) {
+        button.textContent = '💗';
+        button.classList.add('found');
+        foundHearts++;
 
-        matchedPairs++;
-        firstCard = null;
+        message.textContent = foundHearts === 5
+          ? 'آفریننن! همهٔ قلب‌ها رو پیدا کردی! 💖'
+          : 'یه قلب پیدا کردی! 💗 ' + foundHearts + ' از ۵';
 
-        if (matchedPairs === 3) {
-            document.getElementById('memory-message').textContent =
-                'آفرین دختر باهوش! همه‌ی جفت‌ها رو پیدا کردی! 🎉💗';
-        }
-    } else {
-        locked = true;
+        floatEmoji('💖');
+      } else {
+        button.textContent = '🌸';
+        message.textContent = 'این یکی گل بود! دوباره امتحان کن 🌷';
+      }
+    };
 
-        const oldCard = firstCard;
-        firstCard = null;
-
-        setTimeout(() => {
-            oldCard.dataset.open = 'false';
-            button.dataset.open = 'false';
-
-            oldCard.textContent = '❔';
-            button.textContent = '❔';
-
-            locked = false;
-        }, 800);
-    }
+    grid.appendChild(button);
+  }
 }
 
+// 🌸 بزرگ کردن گل‌ها
+function growFlower(element) {
+  element.classList.toggle('grow');
 
-// باز کردن هدیه
+  const message = document.getElementById('flowerMessage');
 
-function openGift() {
-    document.getElementById('gift').textContent = '💝';
+  if (message) {
+    message.textContent = 'یه شکوفه برای قشنگ‌ترین دختر دنیا! 🌸💗';
+  }
 
-    document.getElementById('gift-message').textContent =
-        'سورپرایز! تو خودت قشنگ‌ترین هدیه‌ای! 💗';
-
-    createHearts();
+  floatEmoji('🌸');
 }
 
+// 🌷 بارون گل
+function gardenRain() {
+  const flowers = ['🌸', '🌷', '🌹', '🌼', '💗'];
 
-// باران قلب
-
-function createHearts() {
-    const container = document.getElementById('heart-rain');
-
-    for (let i = 0; i < 35; i++) {
-        const heart = document.createElement('span');
-
-        heart.className = 'falling-heart';
-
-        heart.textContent = ['💗', '💖', '💕', '💘', '🌸'][
-            Math.floor(Math.random() * 5)
-        ];
-
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.fontSize = (18 + Math.random() * 25) + 'px';
-        heart.style.animationDuration = (2 + Math.random() * 3) + 's';
-        heart.style.animationDelay = Math.random() * 1.5 + 's';
-
-        container.appendChild(heart);
-
-        setTimeout(() => heart.remove(), 6500);
-    }
+  for (let i = 0; i < 25; i++) {
+    setTimeout(() => {
+      floatEmoji(flowers[Math.floor(Math.random() * flowers.length)]);
+    }, i * 90);
+  }
 }
 
+// 🎁 جعبه‌های سورپرایز
+const gifts = [
+  '🎀 هدیهٔ اول: یه بغل مجازی خیلی بزرگ برای تو!',
+  '💌 هدیهٔ دوم: یه عالمه بوس و دوست داشتن!',
+  '🧸 هدیهٔ سوم: تو قشنگ‌ترین هدیهٔ دنیای منی!'
+];
 
-// نمایش اولین صفحه
+function openGift(index) {
+  const message = document.getElementById('giftMessage');
 
-showPage();
+  if (message && gifts[index]) {
+    message.textContent = gifts[index];
+    sprinkle();
+  }
+}
+
+// 💞 قلبی که بزرگ می‌شه
+let heartSize = 100;
+let heartClicks = 0;
+
+function heartClick() {
+  const heart = document.getElementById('myHeart');
+  const message = document.getElementById('heartMessage');
+[10/10/2026 10:46 PM] .: if (!heart || !message) return;
+
+  heartClicks++;
+  heartSize = Math.min(heartSize + 18, 260);
+
+  heart.style.fontSize = heartSize + 'px';
+
+  const messages = [
+    'یه ذره بیشتر دوستت دارم! 💗',
+    'بازم بیشتررر! 💖',
+    'قلبم داره بزرگ می‌شه! 🥹',
+    'همهٔ این قلب‌ها مال توئه! 💕',
+    'دیگه جا برای این همه عشق ندارم! 😭💗'
+  ];
+
+  message.textContent = messages[
+    Math.min(heartClicks - 1, messages.length - 1)
+  ];
+
+  floatEmoji('💗');
+}
+
+function resetHeart() {
+  heartSize = 100;
+  heartClicks = 0;
+
+  const heart = document.getElementById('myHeart');
+  const message = document.getElementById('heartMessage');
+
+  if (heart) heart.style.fontSize = '100px';
+
+  if (message) {
+    message.textContent = 'یه بار روی قلبم بزن! 🥹';
+  }
+}
+
+// 💗 جواب سؤال
+function answer(yes) {
+  const message = document.getElementById('answerMessage');
+
+  if (message) {
+    message.textContent = yes
+      ? 'ولی من بازم باید هر روز بهت یادآوری کنم! 💗'
+      : 'اون‌قدر که هیچ عددی نمی‌تونه اندازه‌ش رو بگه! 💖';
+  }
+
+  sprinkle();
+}
+
+// 🎀 سورپرایز نهایی
+function finalSurprise() {
+  const message = document.getElementById('finalMessage');
+
+  if (message) {
+    message.innerHTML =
+      '🎀💗 هستی، تو یه دونه‌ای! 💗🎀<br>' +
+      'امیدوارم همیشه دلت شاد باشه و بخندی! 🌸🧸';
+  }
+
+  sprinkle();
+}
+
+// ✨ نوار پیشرفت
+window.addEventListener('scroll', function () {
+  const progress = document.getElementById('progress');
+
+  if (!progress) return;
+
+  const height = document.documentElement.scrollHeight - window.innerHeight;
+
+  progress.style.width =
+    (height > 0 ? window.scrollY / height * 100 : 0) + '%';
+});
+
+// 💗 آماده‌سازی بازی هنگام باز شدن صفحه
+document.addEventListener('DOMContentLoaded', function () {
+  resetGame();
+});
