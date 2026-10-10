@@ -1,0 +1,155 @@
+
+[10/10/2026 9:38 PM] .: <!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دنیای کوچولوی تو 💗</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🎀 دنیای کوچولوی تو</div>
+    <div id="page-number">صفحه ۱ از ۸</div>
+</header>
+
+<main>
+
+    <!-- صفحه اول -->
+    <section class="page active">
+        <div class="decoration">🧸 💗 🌷 🎀</div>
+        <h1>روز دخترت مبارک</h1>
+        <h2>قشنگ‌ترین دختر دنیای منی! 💕</h2>
+
+        <p>
+            این گوشه‌ی کوچولو از دنیا رو فقط برای تو ساختم،
+            چون تو خودت یه دنیای قشنگی! 🥹💗
+        </p>
+
+        <button onclick="nextPage()">بریممم! 🎀</button>
+    </section>
+
+    <!-- صفحه دوم -->
+    <section class="page">
+        <h1>چرا انقدر خاصی؟ 🌸</h1>
+
+        <div class="cards">
+            <div class="card">🌷<h3>قشنگ من</h3><p>با بودنت دنیا قشنگ‌تر می‌شه.</p></div>
+            <div class="card">🧸<h3>دختر گوگولی</h3><p>تو یه دونه‌ای و هیچ‌کس مثل تو نیست.</p></div>
+            <div class="card">👑<h3>ملکه من</h3><p>همیشه لایق بهترین اتفاق‌هایی.</p></div>
+        </div>
+
+        <button onclick="nextPage()">بعدی 💗</button>
+    </section>
+
+    <!-- صفحه سوم -->
+    <section class="page">
+        <h1>بازی جمع کردن قلب‌ها 💖</h1>
+        <p>روی قلب‌ها بزن و امتیاز جمع کن!</p>
+
+        <h2>امتیاز: <span id="score">0</span></h2>
+
+        <div id="game-area">
+            <button class="heart" onclick="collectHeart(this)">💗</button>
+            <button class="heart" onclick="collectHeart(this)">💖</button>
+            <button class="heart" onclick="collectHeart(this)">💕</button>
+            <button class="heart" onclick="collectHeart(this)">💘</button>
+        </div>
+
+        <button onclick="nextPage()">صفحه بعد 🎀</button>
+    </section>
+
+    <!-- صفحه چهارم -->
+    <section class="page">
+        <h1>یه سؤال گوگولی! 🐰</h1>
+        <p>کدوم یکی از اینا بیشتر خوشحالت می‌کنه؟</p>
+
+        <button onclick="answer('نامه عاشقانه 💌')">نامه عاشقانه 💌</button>
+        <button onclick="answer('شکلات 🍫')">شکلات 🍫</button>
+        <button onclick="answer('بغل گرم 🧸')">بغل گرم 🧸</button>
+
+        <h2 id="answer"></h2>
+
+        <button onclick="nextPage()">بعدی 💗</button>
+    </section>
+
+    <!-- صفحه پنجم -->
+    <section class="page">
+        <h1>بازی حافظه 🧠</h1>
+        <p>روی کارت‌ها بزن و شکل‌های مشابه رو پیدا کن!</p>
+
+        <div id="memory-game">
+            <button onclick="flip(this)">🌸</button>
+            <button onclick="flip(this)">💗</button>
+            <button onclick="flip(this)">🌸</button>
+            <button onclick="flip(this)">🎀</button>
+            <button onclick="flip(this)">💗</button>
+            <button onclick="flip(this)">🎀</button>
+        </div>
+
+        <h2 id="memory-message"></h2>
+
+        <button onclick="nextPage()">بعدی 💌</button>
+    </section>
+
+    <!-- صفحه ششم -->
+    <section class="page">
+        <h1>یه نامه برای تو 💌</h1>
+
+        <div class="letter">
+            دختر قشنگ من،
+            <br><br>
+            روز دختر مبارک، خوشگل‌ترین اتفاق زندگی من! 💗
+            <br><br>
+            امیدوارم همیشه بخندی، به آرزوهات برسی
+            و هیچ‌وقت یادت نره چقدر ارزشمندی.
+            <br><br>
+            تو لازم نیست کامل باشی تا دوست‌داشتنی باشی.
+            همین که خودتی، قشنگه. 🌷
+        </div>
+
+        <button onclick="nextPage()">سورپرایز بعدی 🎁</button>
+    </section>
+
+    <!-- صفحه هفتم -->
+    <section class="page">
+        <h1>یه هدیه برای تو! 🎁</h1>
+
+        <div id="gift" onclick="openGift()">🎁</div>
+
+        <h2 id="gift-message"></h2>
+
+        <button onclick="nextPage()">بازم سورپرایز دارم! 💗</button>
+    </section>
+
+    <!-- صفحه هشتم -->
+    <section class="page">
+        <div class="decoration">💗 💕 💖 💝 💗</div>
+
+        <h1>روز دختر مبارک، هستی من! 🎀</h1>
+
+        <p>
+            اگه قرار باشه دوباره از اول انتخاب کنم،
+            بازم دلم می‌خواد تو همون دختر قشنگ دنیام باشی. 🥹💗
+        </p>
+
+        <h2>دوستت دارم، گوگولی من! 🧸</h2>
+[10/10/2026 9:38 PM] .: <button onclick="createHearts()">بارون قلبییی! 💕</button>
+        <button onclick="restart()">از اول ببینیم ↻</button>
+    </section>
+
+</main>
+
+<div id="heart-rain"></div>
+
+<div class="navigation">
+    <button onclick="previousPage()">قبلی</button>
+    <button onclick="nextPage()">بعدی</button>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
